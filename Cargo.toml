@@ -1,0 +1,13 @@
+[package]
+name = "maze"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.12.0"
+bytes = "1.5.0"
+json = "0.12.4"
+rand = "0.8.5"
+pkt_udp = { git = "https://github.com/GhostMinerPlus/pkt_udp.git" }
