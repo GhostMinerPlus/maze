@@ -331,6 +331,17 @@ pub fn setup(
         Flicker,
     ));
 
+    // Sun Light
+    commands.spawn(DirectionalLightBundle {
+        transform: Transform::from_xyz(0.0, 1000.0, 0.0),
+        directional_light: DirectionalLight {
+            color: Color::Rgba { red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0 },
+            shadows_enabled: true,
+            ..default()
+        },
+        ..default()
+    });
+
     // Camera
     commands.spawn((
         Camera3dBundle {
