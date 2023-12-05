@@ -9,7 +9,7 @@ use bevy::{
 
 #[cfg(not(all(feature = "webgl2", target_arch = "wasm32")))]
 use bevy::core_pipeline::experimental::taa::TemporalAntiAliasBundle;
-use bevy_xpbd_3d::components::{Collider, RigidBody};
+use bevy_xpbd_3d::components::{AngularVelocity, Collider, LinearVelocity, RigidBody};
 
 #[derive(Component)]
 pub struct Flicker;
@@ -180,6 +180,10 @@ pub fn setup(
 
     // R Sphere
     commands.spawn((
+        RigidBody::Dynamic,
+        Collider::ball(0.9),
+        AngularVelocity::ZERO,
+        LinearVelocity::ZERO,
         PbrBundle {
             mesh: icosphere_mesh.clone(),
             material: materials.add(StandardMaterial {
@@ -199,6 +203,7 @@ pub fn setup(
             specular_transmission: true,
             diffuse_transmission: false,
         },
+        ExampleDisplay {},
     ));
 
     // G Sphere
@@ -359,24 +364,5 @@ pub fn setup(
             specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
         },
         BloomSettings::default(),
-    ));
-
-    // Controls Text
-    commands.spawn((
-        TextBundle::from_section(
-            "",
-            TextStyle {
-                font_size: 18.0,
-                color: Color::WHITE,
-                ..Default::default()
-            },
-        )
-        .with_style(Style {
-            position_type: PositionType::Absolute,
-            top: Val::Px(10.0),
-            left: Val::Px(10.0),
-            ..default()
-        }),
-        ExampleDisplay,
     ));
 }
