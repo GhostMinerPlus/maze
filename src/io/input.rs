@@ -79,7 +79,7 @@ pub fn deal_input(
     } else if input.pressed(KeyCode::D) {
         ball.0.0 -= c_z * 5.0;
     }
-    if input.just_pressed(KeyCode::Space) {
+    if (ball.2.transform_point(Vec3::ZERO).y + 0.5).abs() < 0.1 && input.just_pressed(KeyCode::Space) {
         ball.1.y += 5.0;
     }
 }
