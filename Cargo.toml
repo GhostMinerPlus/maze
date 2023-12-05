@@ -11,3 +11,4 @@ bytes = "1.5.0"
 json = "0.12.4"
 rand = "0.8.5"
 pkt_udp = { git = "https://github.com/GhostMinerPlus/pkt_udp.git" }
+bevy_xpbd_3d = "0.3.2"
