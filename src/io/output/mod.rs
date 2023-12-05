@@ -247,14 +247,7 @@ pub fn setup(
         },
     ));
 
-    // Chessboard Plane
-    let black_material = materials.add(StandardMaterial {
-        base_color: Color::BLACK,
-        reflectance: 0.3,
-        perceptual_roughness: 0.8,
-        ..default()
-    });
-
+    // Plane
     let white_material = materials.add(StandardMaterial {
         base_color: Color::WHITE,
         reflectance: 0.3,
@@ -262,29 +255,25 @@ pub fn setup(
         ..default()
     });
 
-    for x in -3..4 {
-        for z in -3..4 {
-            commands.spawn((
-                RigidBody::Static,
-                Collider::cuboid(2.0, 0.002, 2.0),
-                PbrBundle {
-                    mesh: plane_mesh.clone(),
-                    material: if (x + z) % 2 == 0 {
-                        black_material.clone()
-                    } else {
-                        white_material.clone()
-                    },
-                    transform: Transform::from_xyz(x as f32 * 2.0, -1.0, z as f32 * 2.0),
-                    ..default()
-                },
-                ExampleControls {
-                    color: true,
-                    specular_transmission: false,
-                    diffuse_transmission: false,
-                },
-            ));
-        }
-    }
+    commands.spawn((
+        RigidBody::Static,
+        Collider::cuboid(2.0, 0.002, 2.0),
+        PbrBundle {
+            mesh: plane_mesh.clone(),
+            material: white_material.clone(),
+            transform: Transform::from_xyz(0.0, -1.0, 0.0).with_scale(Vec3 {
+                x: 100.0,
+                y: 1.0,
+                z: 100.0,
+            }),
+            ..default()
+        },
+        ExampleControls {
+            color: true,
+            specular_transmission: false,
+            diffuse_transmission: false,
+        },
+    ));
 
     // Paper
     commands.spawn((
@@ -333,9 +322,14 @@ pub fn setup(
 
     // Sun Light
     commands.spawn(DirectionalLightBundle {
-        transform: Transform::from_xyz(0.0, 1000.0, 0.0),
+        transform: Transform::from_xyz(0.0, 100.0, 0.0),
         directional_light: DirectionalLight {
-            color: Color::Rgba { red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0 },
+            color: Color::Rgba {
+                red: 1.0,
+                green: 1.0,
+                blue: 1.0,
+                alpha: 1.0,
+            },
             shadows_enabled: true,
             ..default()
         },
