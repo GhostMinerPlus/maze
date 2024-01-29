@@ -2,7 +2,7 @@ use std::f32::consts::PI;
 
 use bevy::prelude::*;
 
-use crate::io::output::Flicker;
+use crate::output::Flicker;
 
 pub fn flicker_system(
     mut flame: Query<&mut Transform, (With<Flicker>, With<Handle<Mesh>>)>,
