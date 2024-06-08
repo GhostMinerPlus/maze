@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 // This lint usually gives bad advice in the context of Bevy -- hiding complex queries behind
 // type aliases tends to obfuscate code while offering no improvement in code cleanliness.
 #![allow(clippy::type_complexity)]
@@ -9,11 +11,7 @@ use bevy_xpbd_3d::prelude::*;
 use bevy::core_pipeline::experimental::taa::TemporalAntiAliasPlugin;
 
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
-
-mod effect;
-mod fps;
-mod input;
-mod output;
+use maze::{effect, fps, input, output};
 
 fn main() {
     let mut app = App::new();
